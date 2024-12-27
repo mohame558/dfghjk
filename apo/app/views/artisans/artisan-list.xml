@@ -1,0 +1,36 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+  <ActionBar title="Egyptian Artisans">
+    <ActionItem ios.position="right" android.position="right" tap="{{ onSearchTap }}">
+      <Label text="&#xf002;" class="fas text-lg" />
+    </ActionItem>
+  </ActionBar>
+
+  <GridLayout rows="auto, *">
+    <!-- Category Filter -->
+    <ScrollView row="0" orientation="horizontal" class="p-2">
+      <StackLayout orientation="horizontal">
+        <Button text="All" tap="{{ filterByCategory }}" class="m-1 p-2" />
+        <Button text="Carpenters" tap="{{ filterByCategory }}" class="m-1 p-2" />
+        <Button text="Tailors" tap="{{ filterByCategory }}" class="m-1 p-2" />
+        <Button text="Blacksmiths" tap="{{ filterByCategory }}" class="m-1 p-2" />
+        <Button text="Plumbers" tap="{{ filterByCategory }}" class="m-1 p-2" />
+      </StackLayout>
+    </ScrollView>
+
+    <!-- Artisan List -->
+    <ListView row="1" items="{{ artisans }}" itemTap="{{ onArtisanTap }}" class="list-group">
+      <ListView.itemTemplate>
+        <GridLayout columns="auto, *" rows="auto, auto" class="p-4 border-b border-gray-200">
+          <Image src="{{ profileImage }}" width="60" height="60" class="rounded-full" row="0" col="0" rowSpan="2" />
+          <Label text="{{ name }}" class="text-lg font-bold" row="0" col="1" />
+          <StackLayout orientation="horizontal" row="1" col="1">
+            <Label text="{{ category }}" class="text-sm text-gray-600" />
+            <Label text=" • " class="text-sm text-gray-600" />
+            <Label text="{{ rating }}" class="text-sm text-gray-600" />
+            <Label text="★" class="text-sm text-yellow-500" />
+          </StackLayout>
+        </GridLayout>
+      </ListView.itemTemplate>
+    </ListView>
+  </GridLayout>
+</Page>
